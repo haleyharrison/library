@@ -1,0 +1,47 @@
+<h3>$book.getName()'s page</h3>
+
+<h4>Current major : $book.getMajor()</h4>
+
+<form action='/update_book' method='post'>
+  <input id='book_id' name='book_id' type='hidden' value='$book.getId()'>
+  <label for='name'>Name : </label>
+  <input id='name' name='name' type='text' value='$book.getName()'>
+  <label for='date'>Enrollment Date : </label>
+  <input id='date' name='date' type='date' value='$book.getDate()'>
+
+  <input id='book_id' name='book_id' type='hidden' value='$book.getId()'>
+  <label for='major_id'>Add a major : </label>
+  <select id='major_id' name='major_id' type='text'>
+    #foreach($major in $majors)
+      <option value='$major.getId()'> $major.getMajor() </option>
+    #end
+  </select>
+
+  <button type='submit'>Edit/Add</button>
+</form>
+<br>
+<form action='/add_authors' method='post'>
+    <input id='book_id' name='book_id' type='hidden' value='$book.getId()'>
+    <label for='author_id'>Add a author : </label>
+    <select id='author_id' name='author_id' type='text'>
+      #foreach($author in $authors)
+        <option value='$author.getId()'> $author.getName() </option>
+      #end
+    </select>
+    <button type='submit'>Add</button>
+</form>
+<br>
+#if($myAuthors)
+  <table>
+    <tr>
+      <td>Author Name</td>
+      <td>Author Number</td>
+    </tr>
+  #foreach($author in $myAuthors)
+  <tr>
+      <td>$author.getName()</td>
+      <td>$author.getNumber()</td>
+  </tr>
+  #end
+  </table>
+#end

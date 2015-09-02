@@ -1,0 +1,37 @@
+<h3>Author : $author.getName()</h3>
+
+<form action='/update_author' method='post'>
+  <input id='author_id' name='author_id' type='hidden' value='$author.getId()'>
+  <label for='name'>Name : </label>
+  <input id='name' name='name' type='text' value='$author.getName()'>
+  <label for='number'>Number : </label>
+  <input id='number' name='number' type='text' value='$author.getNumber()'>
+  <button type='submit'>Edit</button>
+</form>
+<br>
+<form action='/add_books' method='post'>
+    <input id='author_id' name='author_id' type='hidden' value='$author.getId()'>
+    <label for='book_id'>Add a book : </label>
+    <select id='book_id' name='book_id' type='text'>
+      #foreach($book in $all_books)
+        <option value='$book.getId()'> $book.getName() </option>
+      #end
+    </select>
+    <button type='submit'>Add</button>
+</form>
+<br>
+#if($books)
+  <table>
+  <tr>
+    <td>Book Name</td>
+    <td>Enrollment Date</td>
+  </tr>
+  #foreach($book in $books)
+  <tr>
+      <td>$book.getName()</td>
+      <td>$book.getDate()</td>
+  </tr>
+  #end
+  </table>
+#end
+</div>
